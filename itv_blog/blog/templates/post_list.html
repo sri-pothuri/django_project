@@ -1,0 +1,23 @@
+<!-- post_list.html -->
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Post List</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <h1>Post List</h1>
+    <ul>
+        {% for post in posts %}
+            <li><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></li>
+            <p>{{ post.content }}</p>
+        {% endfor %}
+    </ul>
+</body>
+</html>
+<!-- In your HTML template -->
+
