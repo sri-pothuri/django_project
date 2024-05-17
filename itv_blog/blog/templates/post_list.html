@@ -1,5 +1,6 @@
 <!-- post_list.html -->
 {% load static %}
+{% block content %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -7,17 +8,36 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Post List</title>
-    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/post_list.css' %}">
 </head>
 <body>
-    <h1>Post List</h1>
-    <ul>
-        {% for post in posts %}
-            <li><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></li>
-            <p>{{ post.content }}</p>
-        {% endfor %}
-    </ul>
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col">
+                <h1 class="mb-4">Blog Posts</h1>
+                {% for post in posts %}
+                    <div class="card mb-3">
+                        <div class="card-body">
+                            <h2 class="card-title">{{ post.title }}</h2>
+                            <p class="card-text">{{ post.content|truncatewords:30 }}</p>
+                            <a href="{% url 'post_detail' post.pk %}" class="btn btn-primary">Read More</a>
+                        </div>
+                        <div class="card-footer text-muted">
+                            Posted on {{ post.publication_date }} By {{  post.author_name }}
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS, Popper.js, and jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
-<!-- In your HTML template -->
 
+{% endblock %}

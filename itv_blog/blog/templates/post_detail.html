@@ -1,5 +1,6 @@
 <!-- post_detail.html -->
 {% load static %}
+{% block content %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -7,15 +8,37 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ post.title }}</title>
-    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
-
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/post_detail.css' %}">
 </head>
 <body>
-    <h1>{{ post.title }}</h1>
-    <p>{{ post.content }}</p>
-    <p>Published by: {{ post.author_name  }}</p>
-    <p>Published on: {{ post.publication_date }}</p>
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col">
+                <div class="card">
+                    <div class="card-header text-center">
+                        <h1>{{ post.title }}</h1>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text">{{ post.content|linebreaks }}</p>
+                    </div>
+                    <div class="card-footer text-muted text-right">
+                        <p>Posted on {{ post.publication_date }} By {{   post.author_name }}</p>
+                    </div>
+                </div>
+                <div class="mt-4">
+                    <a href="{% url 'post_list' %}" class="btn btn-secondary">Back to Posts</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS, Popper.js, and jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
-<!-- In your HTML template -->
 
+{% endblock %}

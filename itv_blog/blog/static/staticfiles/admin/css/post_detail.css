@@ -1,0 +1,14 @@
+/* static/css/post_detail.css */
+.card-title {
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.card-text {
+    font-size: 1.1rem;
+    margin-bottom: 1.5rem;
+}
+
+.card-footer {
+    font-size: 0.9rem;
+}
